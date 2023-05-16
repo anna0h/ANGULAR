@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Padlet} from "./shared/padlet";
 
 @Component({
   selector: 'bs-root',
-  templateUrl: './app.component.html',
+  template: `<bs-padlet-list *ngIf="listOn" (showDetailsEvent)="showDetails($event)"></bs-padlet-list>
+  <bs-padlet-details *ngIf="detailsOn" [padlet]="padlet"
+                   (showListEvent)="showList()"></bs-padlet-details>`,
   styles: []
 })
 export class AppComponent {
-  title = 'bookstore23';
+  listOn = true;
+  detailsOn = false;
+
+  padlet : Padlet |undefined;
+
+  title = 'padlet';
+
+  showList() {
+    this.listOn = true;
+    this.detailsOn = false;
+  }
+  showDetails(padlet: Padlet) {
+    this.padlet = padlet;
+    this.listOn = false;
+    this.detailsOn = true;
+  }
 }
