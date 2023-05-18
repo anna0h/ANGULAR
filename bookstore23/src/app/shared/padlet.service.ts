@@ -1,12 +1,36 @@
 import { Injectable } from '@angular/core';
 import {Padlet, User} from "./padlet";
 import {Entrie} from "./entrie";
+import {catchError, Observable, retry, throwError} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PadletService {
-  padlets: Padlet[];
+  private api = 'http://padlet.s2010456013.student.kwmhgb.at/api';
+  constructor(private http: HttpClient) {}
+
+  getAllPadlets(): Observable<Array<Padlet>>{
+    return this.http.get<Array<Padlet>>(`${this.api}/padlets`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+  }
+
+  getSinglePadlet(id:number) : Observable<Padlet>{
+    return this.http.get<Padlet>(`${this.api}/padlets/findByID/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+  }
+
+  getAllEntries(id:number) : Observable<Entrie[]>{
+    return this.http.get<Entrie[]>(`${this.api}/padlets/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+  }
+
+  private errorHandler(error: Error | any): Observable<any> {
+    return throwError(error);
+  }
+
+  /*padlets: Padlet[];
   entries: Entrie[];
 
   constructor() {
@@ -39,5 +63,5 @@ export class PadletService {
 
   getAllEntries(id:number) : Entrie[]{
     return <Array<Entrie>>this.entries.filter(entrie=>entrie.padlet_id == id);
-  }
+  }*/
 }

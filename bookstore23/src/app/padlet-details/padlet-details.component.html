@@ -1,7 +1,12 @@
-<h2 class="header">{{ padlet?.name }}</h2>
+<h2 *ngIf="padlet">Hello World</h2>
+<h2>{{padlet.name}}</h2>
+<div class="metadata">
+  <!--div class="content">Ersteller: {{ padlet.user.firstName}} {{ padlet.user.lastName}} ({{padlet.user_id}})</div-->
+</div>
+<div class="ui divider"></div>
 
-<a *ngFor="let entrie of entries" class="item">
+<!--a *ngFor="let entrie of entries" class="item">
   <div class="header">{{ entrie?.title }}</div>
-</a>
+</a-->
 
 <button [routerLink] = "'/padlets'" class="ui red button">Zurück zur Padletliste</button>

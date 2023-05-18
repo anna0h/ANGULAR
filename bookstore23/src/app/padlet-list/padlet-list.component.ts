@@ -12,20 +12,18 @@ import {Entrie} from "../shared/entrie";
 export class PadletListComponent implements OnInit {
   padlets: Padlet[] = [];
 
-  constructor(private ps:PadletService){}
+  /*@Output() showDetailsEvent = new EventEmitter<Padlet>();*/
+  constructor(
+    private ps: PadletService
+  ) {}
 
-  ngOnInit(){
-    /*this.padlets = [
-      new Padlet(1, false,
-        new User(1, 'Anna', 'Hornbachner', 'anna@test.com', 'secret', 'url'),
-        'Padlet 1'),
-      new Padlet(2, true,
-        new User(2, 'fN2', 'lN2', 'user2@test.com', 'secret', 'url'),
-        'Padlet 2')
-    ]*/
-    //console.log(this.padlets);
-
-    this.padlets = this.ps.getAllPadlets();
+  ngOnInit() {
+    this.ps.getAllPadlets().subscribe(res=>this.padlets = res);
   }
+
+  /*
+  showDetails(padlet:Padlet) {
+    this.showDetailsEvent.emit(padlet)
+  }*/
 
 }

@@ -2,7 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Padlet, User} from "../shared/padlet";
 import {Entrie} from "../shared/entrie";
 import {PadletService} from "../shared/padlet.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PadletFactory} from "../shared/padlet-factory";
+import {UserFactory} from "../shared/user-factory";
 
 @Component({
   selector: 'bs-padlet-details',
@@ -13,33 +15,29 @@ export class PadletDetailsComponent implements OnInit {
   //@Input() padlet: Padlet | undefined
   //@Output() showListEvent = new EventEmitter<any>();
 
+  //padlet: Padlet | undefined;
+  padlet: Padlet = PadletFactory.empty();
+  //entries: Entrie[] = [];
+  //user: User = UserFactory.empty();
+
   constructor(
     private ps: PadletService,
+    private router: Router,
     private route: ActivatedRoute
-  ) {
-  }
 
-  padlet: Padlet | undefined;
-  entries: Entrie[] = [];
-
-  /*showPadletList(){
-      this.showListEvent.emit();
-    }*/
+  ) {}
 
   ngOnInit() {
-    /*this.entries = [
-      new Entrie( 1,
-        new User(3, "fN3", "lN3", "user3@test.com","secret", "url"),
-        new Padlet(3, true, new User(4, "test", "test", "test@test.at", "secret", "url"),"Entrie"),
-        "Entrie 1", "Content von Entrie"),
-      new Entrie( 2,
-        new User(4, "fN3", "lN3", "user3@test.com","secret", "url"),
-        new Padlet(4, true, new User(5, "test", "test", "test@test.at", "secret", "url"),"Entrie"),
-        "Entrie 2", "Content von Entrie")
-    ]
-    console.log(this.entries);*/
     const params = this.route.snapshot.params;
-    this.padlet = this.ps.getSinglePadlet(params['id']);
-    this.entries = this.ps.getAllEntries(params['id']);
+    /*this.ps.getSinglePadlet(params['id'])
+      .subscribe((p: Padlet) => {
+        this.padlet = p;
+        this.entries = this.padlet.entries;
+        this.user = this.padlet.user;
+      });*/
+    //console.log(this.padlet);
+    this.ps.getSinglePadlet(params['id']).subscribe((p:Padlet) => {this.padlet = p;
+      console.log(this.padlet);
+    });
   }
 }
