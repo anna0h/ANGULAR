@@ -1,12 +1,58 @@
-<h2 *ngIf="padlet">Hello World</h2>
-<h2>{{padlet.name}}</h2>
+<h1>{{padlet.name}}</h1>
 <div class="metadata">
-  <!--div class="content">Ersteller: {{ padlet.user.firstName}} {{ padlet.user.lastName}} ({{padlet.user_id}})</div-->
+  <div class="content">Padlet ID: {{ padlet.id}}</div>
+  <div class="content">Ersteller:In: {{ padlet.user.firstName}} {{ padlet.user.lastName}} (ID: {{padlet.user_id}})</div>
 </div>
-<div class="ui divider"></div>
+<div class="ui divider"></div><br>
+<div class="ui grid container cards">
+  <div *ngFor="let entrie of entries" class="item ui card">
+    <div class="content">
+      <h2 class="header"><b>{{entrie?.title }}</b></h2>
+      <div class="description">{{entrie?.content }}</div>
+      <div class="content">Ersteller-ID: {{entrie.user_id}}</div>
+      <br>
 
-<!--a *ngFor="let entrie of entries" class="item">
-  <div class="header">{{ entrie?.title }}</div>
-</a-->
+      <!-- DELETE & EDIT BUTTONS -->
+      <!--button class="ui tiny red labeled icon button"
+              (click)="removeBook()"-->
+      <i class="remove icon"></i>
+      <!--button class="ui tiny red labeled icon button"
+              (click)="removeBook()"-->
+      <i class="edit icon"></i>
+    </div>
+    <div class="ui divider"></div>
 
-<button [routerLink] = "'/padlets'" class="ui red button">Zurück zur Padletliste</button>
+    <!-- RATINGS -->
+    <div class="extra">
+      <h3>Ratings:</h3>
+      <div *ngFor="let rating of entrie.ratings" class="extra content">
+        <div class="extra">{{rating.user.firstName}} {{rating.user.lastName}}:
+          <div class="ui star rating" *ngIf="rating.rating">
+            <i *ngFor="let r of getRating(rating.rating)" class="yellow star icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui divider"></div>
+    <!-- COMMENTS -->
+    <div class="extra">
+      <h3>Comments:</h3>
+      <div *ngFor="let comment of entrie.comments" class="extra content">
+        <div>{{comment.user.firstName}} {{comment.user.lastName}} (ID: {{comment.user_id}}): {{comment.comment}}</div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div><br>
+<!-- DELETE & EDIT BUTTONS -->
+<button [routerLink]="'/padlets'" class="ui red button">
+  <i class="backward icon"></i>Zurück zur Padletliste</button>
+
+<button class="ui red labeled icon button" (click)="removePadlet()">
+  <i class="delete icon"></i>Padlet löschen</button>
+
+<button class="ui yellow labeled icon button">
+  <i class="edit icon"></i>Padlet bearbeiten</button> <!--[routerLink]="'../../padlet/', padlet.id" -->
+
+

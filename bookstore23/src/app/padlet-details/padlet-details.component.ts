@@ -5,6 +5,9 @@ import {PadletService} from "../shared/padlet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PadletFactory} from "../shared/padlet-factory";
 import {UserFactory} from "../shared/user-factory";
+import {EntrieFactory} from "../shared/entrie-factory";
+import {Rating} from "../shared/rating";
+import {Comment} from "../shared/comment";
 
 @Component({
   selector: 'bs-padlet-details',
@@ -12,13 +15,11 @@ import {UserFactory} from "../shared/user-factory";
   styles: []
 })
 export class PadletDetailsComponent implements OnInit {
-  //@Input() padlet: Padlet | undefined
-  //@Output() showListEvent = new EventEmitter<any>();
-
-  //padlet: Padlet | undefined;
   padlet: Padlet = PadletFactory.empty();
-  //entries: Entrie[] = [];
-  //user: User = UserFactory.empty();
+  entries: Entrie[] = [];
+  entrie: Entrie = EntrieFactory.empty();
+
+  user: User = UserFactory.empty();
 
   constructor(
     private ps: PadletService,
@@ -27,17 +28,54 @@ export class PadletDetailsComponent implements OnInit {
 
   ) {}
 
-  ngOnInit() {
+  /*ngOnInit() {
     const params = this.route.snapshot.params;
-    /*this.ps.getSinglePadlet(params['id'])
+    this.ps.getSinglePadlet(params['id'])
       .subscribe((p: Padlet) => {
         this.padlet = p;
         this.entries = this.padlet.entries;
         this.user = this.padlet.user;
-      });*/
-    //console.log(this.padlet);
-    this.ps.getSinglePadlet(params['id']).subscribe((p:Padlet) => {this.padlet = p;
-      console.log(this.padlet);
-    });
+      });
+  }*/
+
+  ngOnInit() {
+    const params = this.route.snapshot.params;
+    this.ps.getSinglePadlet(params['id'])
+      .subscribe((p: Padlet) => {
+        this.padlet = p;
+        this.entries = this.padlet.entries;
+        this.user = this.padlet.user;
+        this.getRatings();
+        this.getComments();
+      });
+  }
+
+  getRatings() : void {
+    for(let entrie of this.entries) {
+      this.ps.getRatingsForEntrie(entrie.id).subscribe((res: Rating[]) => {
+        entrie.ratings = res;
+      })
+    }
+  }
+
+  getRating(rating: number) {
+    return Array(rating)
+  }
+
+  getComments() : void {
+    for (let entrie of this.entries) {
+      this.ps.getCommentsForEntrie(entrie.id).subscribe((res: Comment[]) => {
+        //console.log(entrie.comments);
+        entrie.comments = res;
+      });
+    }
+  }
+
+  removePadlet(){
+    if (confirm('Padlet wirklich löschen?')) {
+      this.ps.removePadlet(this.padlet.id)
+        .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
+          this.route }));
+    }
   }
 }

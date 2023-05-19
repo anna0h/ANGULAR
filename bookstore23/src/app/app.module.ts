@@ -10,6 +10,8 @@ import {PadletService} from "./shared/padlet.service";
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import { PadletFormComponent } from './padlet-form/padlet-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import {HttpClientModule} from "@angular/common/http";
     PadletListComponent,
     PadletListItemComponent,
     PadletDetailsComponent,
-    EntrieItemComponent
+    EntrieItemComponent,
+    PadletFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [PadletService],
   bootstrap: [AppComponent]
