@@ -2,3 +2,6 @@
   <a *ngFor="let padlet of padlets" class="item bs-padlet-list-item"
      [padlet]="padlet" [routerLink]="padlet.id.toString()"></a>
 </div>
+
+<button class="fluid ui button icon" [routerLink]="['../padletsform']">
+  <i class="plus icon"></i> Neues Padlet erstellen</button>

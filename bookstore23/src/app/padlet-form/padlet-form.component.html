@@ -1,8 +1,26 @@
-<h1>Buchformular</h1>
-<!--form class="ui large form" [formGroup]="bookForm"
+<h1>Padlet-Formular</h1>
+<form class="ui large form" [formGroup]="padletForm"
       (ngSubmit)="submitForm()">
+  <!--padlet_id-->
+  <input type="hidden" formControlName="id">
 
+  <!--name-->
+  <div class="field">
+    <label>Padletname</label>
+    <input formControlName="name">
+    <div *ngIf="errors['name']" class="ui negative message"> {{
+      errors['name'] }} </div>
+  </div>
+
+  <!--is_public-->
+  <div class="field">
+    <label>Padlet für alle sichtbar machen?</label>
+    <input type="checkbox" formControlName="myBooleanValue">
+  </div>
+
+  <!--user_id-->
+  <!-- wird vorerst von methode hartcodiert übernommen und später durch login automatisch genommen -->
 
   <button type="submit" class="ui button"
           [disabled]="padletForm.invalid">Speichern</button>
-</form-->
+</form>

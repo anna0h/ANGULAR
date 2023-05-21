@@ -16,7 +16,7 @@ export class PadletService {
   //------ delete, update, create Padlet  -------------
   createPadlet(padlet: Padlet): Observable<any> {
     return this.http.post(`${this.api}/padlets`, padlet)
-      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
   updatePadlet(padlet: Padlet): Observable<any> {
@@ -26,6 +26,22 @@ export class PadletService {
 
   removePadlet(id: number): Observable<any> {
     return this.http.delete(`${this.api}/padlets/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  //------ delete, update, create Entrie  -------------
+  createEntrie(id:number, entrie: Entrie): Observable<any>{
+    return this.http.post(`${this.api}/padlets/${id}/entries`, entrie)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  updateEntrie(id:number, entrie:Entrie):Observable<any>{
+    return this.http.put(`${this.api}/padlets/${id}/entries/${entrie.id}`, entrie)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  removeEntrie(id: number): Observable<any> {
+    return this.http.delete(`${this.api}/entries/${id}`)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
@@ -49,6 +65,11 @@ export class PadletService {
 
   getSingleEntrie(padlet_id:number, entrie_id: number) : Observable<Entrie>{
     return this.http.get<Entrie>(`${this.api}/padlets/${padlet_id}/entries/${entrie_id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+  }
+
+  getEntryById(id:number):Observable<Entrie>{
+    return this.http.get<Entrie>(`${this.api}/entries/${id}`)
       .pipe(retry(3)).pipe(catchError(this.errorHandler))
   }
 

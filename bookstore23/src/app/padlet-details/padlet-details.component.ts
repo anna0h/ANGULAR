@@ -78,4 +78,12 @@ export class PadletDetailsComponent implements OnInit {
           this.route }));
     }
   }
+
+  removeEntrie(){
+    if (confirm('Entrie wirklich löschen?')) {
+      this.ps.removeEntrie(this.entrie.id)
+        .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
+          this.route }));
+    }
+  }
 }

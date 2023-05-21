@@ -12,6 +12,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { PadletFormComponent } from './padlet-form/padlet-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { EntrieFormComponent } from './entrie-form/entrie-form.component';
+import { RatingFormComponent } from './rating-form/rating-form.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     PadletListItemComponent,
     PadletDetailsComponent,
     EntrieItemComponent,
-    PadletFormComponent
+    PadletFormComponent,
+    EntrieFormComponent,
+    RatingFormComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,

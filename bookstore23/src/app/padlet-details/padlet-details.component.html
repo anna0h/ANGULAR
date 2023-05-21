@@ -2,8 +2,13 @@
 <div class="metadata">
   <div class="content">Padlet ID: {{ padlet.id}}</div>
   <div class="content">Ersteller:In: {{ padlet.user.firstName}} {{ padlet.user.lastName}} (ID: {{padlet.user_id}})</div>
+  <div class="content">Padlet öffentlich? {{padlet.is_public}}</div>
 </div>
 <div class="ui divider"></div><br>
+
+<button class="fluid ui button icon" [routerLink]="['../../entriesform/{id}']">
+  <i class="plus icon"></i> Neuen Entry erstellen</button><br>
+
 <div class="ui grid container cards">
   <div *ngFor="let entrie of entries" class="item ui card">
     <div class="content">
@@ -13,14 +18,11 @@
       <br>
 
       <!-- DELETE & EDIT BUTTONS -->
-      <!--button class="ui tiny red labeled icon button"
-              (click)="removeBook()"-->
-      <i class="remove icon"></i>
-      <!--button class="ui tiny red labeled icon button"
-              (click)="removeBook()"-->
-      <i class="edit icon"></i>
+      <button class="ui tiny red icon button" (click)="removeEntrie()">
+        <i class="delete icon"></i></button>
+      <button [routerLink]="['../../entriesform/{id}']" class="ui tiny yellow icon button">
+        <i class="edit icon"></i></button>
     </div>
-    <div class="ui divider"></div>
 
     <!-- RATINGS -->
     <div class="extra">
@@ -32,9 +34,12 @@
           </div>
         </div>
       </div>
+      <!-- CREATE BUTTON -->
+      <button class="tiny ui icon button" [routerLink]="['../../ratingsform/{id}']">
+        <i class="plus icon"></i></button><br>
+
     </div>
 
-    <div class="ui divider"></div>
     <!-- COMMENTS -->
     <div class="extra">
       <h3>Comments:</h3>
@@ -42,9 +47,14 @@
         <div>{{comment.user.firstName}} {{comment.user.lastName}} (ID: {{comment.user_id}}): {{comment.comment}}</div>
         <br>
       </div>
+      <!-- CREATE BUTTON -->
+      <button class="tiny ui icon button" [routerLink]="['../commentsform/{id}']">
+        <i class="plus icon"></i></button><br>
     </div>
   </div>
 </div><br>
+
+
 <!-- DELETE & EDIT BUTTONS -->
 <button [routerLink]="'/padlets'" class="ui red button">
   <i class="backward icon"></i>Zurück zur Padletliste</button>
@@ -52,7 +62,7 @@
 <button class="ui red labeled icon button" (click)="removePadlet()">
   <i class="delete icon"></i>Padlet löschen</button>
 
-<button class="ui yellow labeled icon button">
-  <i class="edit icon"></i>Padlet bearbeiten</button> <!--[routerLink]="'../../padlet/', padlet.id" -->
+<button [routerLink]="['../../padletsform/', padlet.id]" class="ui yellow labeled icon button">
+  <i class="edit icon"></i>Padlet bearbeiten</button>
 
 

@@ -19,7 +19,6 @@ export class EntrieFactory {
       rawEntrie.ratings,
       rawEntrie.comments
     );
-
   }
 }
 

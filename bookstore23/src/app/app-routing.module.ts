@@ -3,13 +3,21 @@ import {PadletListComponent} from "./padlet-list/padlet-list.component";
 import {PadletDetailsComponent} from "./padlet-details/padlet-details.component";
 import {NgModule} from "@angular/core";
 import {PadletFormComponent} from "./padlet-form/padlet-form.component";
+import {EntrieFormComponent} from "./entrie-form/entrie-form.component";
+import {RatingFormComponent} from "./rating-form/rating-form.component";
+import {CommentFormComponent} from "./comment-form/comment-form.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'padlets', pathMatch: 'full'},
   { path: 'padlets', component: PadletListComponent},
   { path: 'padlets/:id', component: PadletDetailsComponent},
-  { path: 'admin', component: PadletFormComponent},
-  { path: 'admin/:id', component: PadletFormComponent}
+  { path: 'padletsform', component: PadletFormComponent},
+  { path: 'padletsform/:id', component: PadletFormComponent},
+  //{ path: 'padlets/:id/:entrieid', component: PadletDetailsComponent}
+  { path: 'entriesform', component: EntrieFormComponent},
+  { path: 'entriesform/:id', component: EntrieFormComponent},
+  //{ path: 'ratingsform/:id', component: RatingFormComponent},
+  //{ path: 'commentsform/:id', component: CommentFormComponent}
 ];
 
 @NgModule({
