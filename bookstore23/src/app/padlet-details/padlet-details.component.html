@@ -6,7 +6,7 @@
 </div>
 <div class="ui divider"></div><br>
 
-<button class="fluid ui button icon" [routerLink]="['../../entriesform', padlet.id]">
+<button class="fluid ui button icon" [routerLink]="['../../padlets', padlet.id, 'entriesform']">
   <i class="plus icon"></i>Neuen Entry erstellen</button><br>
 
 <div class="ui grid container cards">
@@ -18,9 +18,9 @@
       <br>
 
       <!-- DELETE & EDIT BUTTONS -->
-      <button class="ui tiny red icon button" (click)="removeEntrie()">
+      <button class="ui tiny red icon button" (click)="removeEntrie(entrie.id)">
         <i class="delete icon"></i></button>
-      <button [routerLink]="['../../entriesform', entrie.id]" class="ui tiny yellow icon button">
+      <button [routerLink]="['../../padlets', padlet.id, 'entriesform', entrie.id]" class="ui tiny yellow icon button">
         <i class="edit icon"></i></button>
     </div>
 

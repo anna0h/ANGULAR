@@ -79,9 +79,9 @@ export class PadletDetailsComponent implements OnInit {
     }
   }
 
-  removeEntrie(){
+  removeEntrie(id: number){
     if (confirm('Entrie wirklich löschen?')) {
-      this.ps.removeEntrie(this.entrie.id)
+      this.ps.removeEntrie(id)
         .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
           this.route }));
     }

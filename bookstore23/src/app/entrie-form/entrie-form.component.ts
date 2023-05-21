@@ -28,7 +28,7 @@ export class EntrieFormComponent implements OnInit{
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params["entrie_id"];
+    const id = this.route.snapshot.params["id"];
     if (id){
       this.isUpdatingEntrie = true
       this.ps.getEntryById(id).subscribe(entrie => {
@@ -50,14 +50,12 @@ export class EntrieFormComponent implements OnInit{
   }
 
   submitForm(){
-    const id = this.route.snapshot.params["id"];
+    const id = this.route.snapshot.params["padlet_id"];
     const entrie: Entrie = EntrieFactory.fromObject(this.entrieForm.value);
     if(this.isUpdatingEntrie){
       console.log(this.isUpdatingEntrie);
       this.ps.updateEntrie(entrie).subscribe(res=>{
-        this.router.navigate(['../padlets', id],{
-          relativeTo: this.route
-        });
+        this.router.navigate(['padlets', id]);
       });
     } else {
       console.log(this.isUpdatingEntrie);
@@ -66,7 +64,7 @@ export class EntrieFormComponent implements OnInit{
         this.entrie = EntrieFactory.empty();
         this.entrieForm.reset(EntrieFactory.empty());
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['../padlets', id]); // Seite neu laden
+          this.router.navigate(['padlets', id]); // Seite neu laden
         });
       });
     }
