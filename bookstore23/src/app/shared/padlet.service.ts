@@ -45,6 +45,11 @@ export class PadletService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  //------ create Rating & Commtents  -------------
+  createRating(id:number, rating:Rating): Observable<any>{
+    return this.http.post(`${this.api}/entries/${id}/ratings`, rating)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
 
   //------ für Ausgabe -------------
 

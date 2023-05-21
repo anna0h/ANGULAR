@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'entries/:id', component: PadletDetailsComponent},
   { path: 'padlets/:padlet_id/entriesform', component: EntrieFormComponent},
   { path: 'padlets/:padlet_id/entriesform/:id', component: EntrieFormComponent},
-  //{ path: 'ratingsform/:id', component: RatingFormComponent},
+  { path: 'entries/:entries_id/ratingsform', component: RatingFormComponent},
   //{ path: 'commentsform/:id', component: CommentFormComponent}
 ];
 

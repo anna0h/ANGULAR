@@ -13,6 +13,7 @@
   <div *ngFor="let entrie of entries" class="item ui card">
     <div class="content">
       <h2 class="header"><b>{{entrie?.title }}</b></h2>
+      <div class="description">Entry-ID: {{entrie.id}}</div>
       <div class="description">{{entrie?.content }}</div>
       <div class="content">Ersteller-ID: {{entrie.user_id}}</div>
       <br>
@@ -35,7 +36,7 @@
         </div>
       </div>
       <!-- CREATE BUTTON -->
-      <button class="tiny ui icon button" [routerLink]="['../../ratingsform/{id}']">
+      <button class="tiny ui icon button" [routerLink]="['../../entries', entrie.id, 'ratingsform']">
         <i class="plus icon"></i></button><br>
 
     </div>
