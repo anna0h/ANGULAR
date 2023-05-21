@@ -16,6 +16,7 @@ export class PadletFormComponent implements OnInit {
   padlet = PadletFactory.empty();
   errors: { [key: string]: string } = {};
   isUpdatingPadlet = false;
+  is_public: string = "1";
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +44,7 @@ export class PadletFormComponent implements OnInit {
     this.padletForm = this.fb.group({
       id: this.padlet.id,
       name: [this.padlet.name, Validators.required],
+      is_public : this.padlet.is_public
     });
     this.padletForm.statusChanges.subscribe(() =>
       this.updateErrorMessages());
@@ -86,4 +88,5 @@ export class PadletFormComponent implements OnInit {
       }
     }
   }
+
 }

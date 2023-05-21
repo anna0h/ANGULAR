@@ -14,8 +14,11 @@
 
   <!--is_public-->
   <div class="field">
-    <label>Padlet für alle sichtbar machen?</label>
-    <input type="checkbox" formControlName="myBooleanValue">
+    <label>Status</label>
+    <select formControlName="is_public" id="is_public" name="is_public" [(ngModel)]="is_public">
+      <option value="1" [defaultSelected]="1">Öffentlich</option>
+      <option value="2">Privat</option>
+    </select>
   </div>
 
   <!--user_id-->

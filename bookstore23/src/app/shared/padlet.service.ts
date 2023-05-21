@@ -35,8 +35,8 @@ export class PadletService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  updateEntrie(id:number, entrie:Entrie):Observable<any>{
-    return this.http.put(`${this.api}/padlets/${id}/entries/${entrie.id}`, entrie)
+  updateEntrie(entrie:Entrie):Observable<any>{
+    return this.http.put(`${this.api}/entries/${entrie.id}`, entrie)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 

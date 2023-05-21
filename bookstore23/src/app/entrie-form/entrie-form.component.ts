@@ -18,7 +18,7 @@ export class EntrieFormComponent implements OnInit{
   entrieForm: FormGroup;
   entrie = EntrieFactory.empty();
   errors: { [key: string]: string } = {};
-  isUpdatingEntrie = false;
+  isUpdatingEntrie : boolean = false;
 
   constructor(private fb: FormBuilder,
               private ps: PadletService,
@@ -28,7 +28,7 @@ export class EntrieFormComponent implements OnInit{
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params["entrieid"];
+    const id = this.route.snapshot.params["entrie_id"];
     if (id){
       this.isUpdatingEntrie = true
       this.ps.getEntryById(id).subscribe(entrie => {
@@ -53,12 +53,14 @@ export class EntrieFormComponent implements OnInit{
     const id = this.route.snapshot.params["id"];
     const entrie: Entrie = EntrieFactory.fromObject(this.entrieForm.value);
     if(this.isUpdatingEntrie){
-      this.ps.updateEntrie(id, entrie).subscribe(res=>{
+      console.log(this.isUpdatingEntrie);
+      this.ps.updateEntrie(entrie).subscribe(res=>{
         this.router.navigate(['../padlets', id],{
           relativeTo: this.route
         });
       });
     } else {
+      console.log(this.isUpdatingEntrie);
       entrie.user_id = 2; // testing
       this.ps.createEntrie(id, entrie).subscribe(res => {
         this.entrie = EntrieFactory.empty();

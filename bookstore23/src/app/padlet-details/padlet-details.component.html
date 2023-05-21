@@ -6,8 +6,8 @@
 </div>
 <div class="ui divider"></div><br>
 
-<button class="fluid ui button icon" [routerLink]="['../../entriesform/{id}']">
-  <i class="plus icon"></i> Neuen Entry erstellen</button><br>
+<button class="fluid ui button icon" [routerLink]="['../../entriesform', padlet.id]">
+  <i class="plus icon"></i>Neuen Entry erstellen</button><br>
 
 <div class="ui grid container cards">
   <div *ngFor="let entrie of entries" class="item ui card">
@@ -20,7 +20,7 @@
       <!-- DELETE & EDIT BUTTONS -->
       <button class="ui tiny red icon button" (click)="removeEntrie()">
         <i class="delete icon"></i></button>
-      <button [routerLink]="['../../entriesform/{id}']" class="ui tiny yellow icon button">
+      <button [routerLink]="['../../entriesform', entrie.id]" class="ui tiny yellow icon button">
         <i class="edit icon"></i></button>
     </div>
 
