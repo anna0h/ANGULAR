@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Padlet} from "./shared/padlet";
 import {HttpClient} from "@angular/common/http";
 import { map } from 'rxjs/operators';
+import {AuthenticationService} from "./shared/authentication.service";
 
 @Component({
   selector: 'bs-root',
@@ -15,9 +16,9 @@ export class AppComponent {
   padlet : Padlet |undefined;
 
   //title = 'padlet';
-  constructor(private http: HttpClient){
+  /*constructor(private http: HttpClient){
     http.get<Padlet>('http://padlet.s2010456013.student.kwmhgb.at/api/padlets').subscribe(val => this.padlet = val);
-  }
+  }*/
 
   /*showList() {
     this.listOn = true;
@@ -28,4 +29,16 @@ export class AppComponent {
     this.listOn = false;
     this.detailsOn = true;
   }*/
+
+  constructor(private authService: AuthenticationService) { }
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  getLoginLabel(){
+    if(this.isLoggedIn()){
+      return "Logout";
+    } else {
+      return "Login";
+    }
+  }
 }

@@ -8,6 +8,7 @@ import {UserFactory} from "../shared/user-factory";
 import {EntrieFactory} from "../shared/entrie-factory";
 import {Rating} from "../shared/rating";
 import {Comment} from "../shared/comment";
+import {AuthenticationService} from "../shared/authentication.service";
 
 @Component({
   selector: 'bs-padlet-details',
@@ -24,7 +25,8 @@ export class PadletDetailsComponent implements OnInit {
   constructor(
     private ps: PadletService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService:AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -74,6 +76,16 @@ export class PadletDetailsComponent implements OnInit {
         .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
           this.route }));
 
+    }
+  }
+
+  isOwner(){
+    let id: string = <string>sessionStorage.getItem("userId");
+    if (this.padlet.user_id.toString() == id){
+      return true;
+    }
+    else {
+      return false;
     }
   }
 }

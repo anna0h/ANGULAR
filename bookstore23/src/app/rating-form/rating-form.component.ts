@@ -32,9 +32,10 @@ export class RatingFormComponent implements OnInit {
   }
 
   initRating() {
+    let sessionId: string = <string>sessionStorage.getItem("userId");
     this.ratingForm = this.fb.group({
       entrie_id: [this.route.snapshot.params["entrie_id"], Validators.required],
-      user_id: [1, Validators.required],
+      user_id: [sessionId, Validators.required],
       rating: [this.rating, [Validators.required, Validators.min(1), Validators.max(5)]],
     });
     this.ratingForm.statusChanges.subscribe(() =>

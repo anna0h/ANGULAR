@@ -53,13 +53,14 @@ export class EntrieFormComponent implements OnInit{
     const id = this.route.snapshot.params["padlet_id"];
     const entrie: Entrie = EntrieFactory.fromObject(this.entrieForm.value);
     if(this.isUpdatingEntrie){
-      console.log(this.isUpdatingEntrie);
+      //console.log(this.isUpdatingEntrie);
       this.ps.updateEntrie(entrie).subscribe(res=>{
         this.router.navigate(['padlets', id]);
       });
     } else {
-      console.log(this.isUpdatingEntrie);
-      entrie.user_id = 2; // testing
+      //console.log(this.isUpdatingEntrie);
+      let sessionId: string = <string>sessionStorage.getItem("userId");
+      entrie.user_id = parseInt(sessionId);
       this.ps.createEntrie(id, entrie).subscribe(res => {
         this.entrie = EntrieFactory.empty();
         this.entrieForm.reset(EntrieFactory.empty());

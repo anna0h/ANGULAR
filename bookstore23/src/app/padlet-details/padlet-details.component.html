@@ -3,21 +3,19 @@
   <div class="content">Padlet ID: {{ padlet.id}}</div>
   <div class="content">Ersteller:In: {{ padlet.user.firstName}} {{ padlet.user.lastName}} (ID: {{padlet.user_id}})</div>
   <div class="content">
-    <div *ngIf="padlet.is_public">
-      <img class="ui avatar image" src="https://static.thenounproject.com/png/4752321-200.png"
-           alt="geschlossenes Schloss">
+    <div *ngIf="padlet?.is_public == true">
+      <img class="ui avatar image" src="https://static.thenounproject.com/png/4752321-200.png" alt="geschlossenes Schloss">
       <span>öffentlich</span>
     </div>
-    <div *ngIf="!padlet.is_public">
-      <img class="ui avatar image" src="https://cdn-icons-png.flaticon.com/512/1388/1388888.png"
-           alt="geschlossenes Schloss">
+    <div *ngIf="padlet?.is_public != true">
+      <img class="ui avatar image" src="https://cdn-icons-png.flaticon.com/512/1388/1388888.png" alt="geschlossenes Schloss">
       <span>privat</span>
     </div>
   </div>
 </div>
 <div class="ui divider"></div><br>
 
-<button class="fluid ui button icon" [routerLink]="['../../padlets', padlet.id, 'entriesform']">
+<button *ngIf="authService.isLoggedIn()" class="fluid ui button icon" [routerLink]="['../../padlets', padlet.id, 'entriesform']">
   <i class="plus icon"></i>Neuen Entry erstellen
 </button><br>
 
@@ -31,9 +29,9 @@
       <br>
 
       <!-- DELETE & EDIT BUTTONS -->
-      <button class="ui tiny red icon button" (click)="removeEntrie(entrie.id)">
+      <button *ngIf="authService.isLoggedIn()" class="ui tiny red icon button" (click)="removeEntrie(entrie.id)">
         <i class="delete icon"></i></button>
-      <button [routerLink]="['../../padlets', padlet.id, 'entriesform', entrie.id]" class="ui tiny yellow icon button">
+      <button *ngIf="authService.isLoggedIn()" [routerLink]="['../../padlets', padlet.id, 'entriesform', entrie.id]" class="ui tiny yellow icon button">
         <i class="edit icon"></i></button>
     </div>
 
@@ -48,7 +46,7 @@
         </div>
       </div>
       <!-- CREATE BUTTON -->
-      <button class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'ratingsform']">
+      <button *ngIf="authService.isLoggedIn()" class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'ratingsform']">
         <i class="plus icon"></i></button>
       <br>
 
@@ -61,7 +59,7 @@
         <div>{{comment.user.firstName}} {{comment.user.lastName}} (ID: {{comment.user_id}}): {{comment.comment}}</div>
         <br>
       </div>
-      <button class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'commentsform']">
+      <button *ngIf="authService.isLoggedIn()" class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'commentsform']">
         <i class="plus icon"></i></button>
       <br>
     </div>
@@ -70,15 +68,15 @@
 
 
 <!-- DELETE & EDIT BUTTONS -->
-<button [routerLink]="'/padlets'" class="ui red button">
+<button [routerLink]="'/padlets'" class="ui gray button">
   <i class="backward icon"></i>Zurück zur Padletliste
 </button>
 
-<button class="ui red labeled icon button" (click)="removePadlet()">
+<button *ngIf="isOwner()" class="ui red labeled icon button" (click)="removePadlet()">
   <i class="delete icon"></i>Padlet löschen
 </button>
 
-<button [routerLink]="['../../padletsform/', padlet.id]" class="ui yellow labeled icon button">
+<button *ngIf="isOwner()" [routerLink]="['../../padletsform/', padlet.id]" class="ui yellow labeled icon button">
   <i class="edit icon"></i>Padlet bearbeiten
 </button>
 

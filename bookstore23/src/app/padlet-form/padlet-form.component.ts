@@ -60,7 +60,8 @@ export class PadletFormComponent implements OnInit {
         });
       });
     } else {
-      padlet.user_id = 1; //for testing
+      let sessionId: string = <string>sessionStorage.getItem("userId");
+      padlet.user_id = parseInt(sessionId);
       console.log(padlet);
       this.ps.createPadlet(padlet).subscribe(res =>{
         this.padlet = PadletFactory.empty();

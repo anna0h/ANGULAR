@@ -34,9 +34,10 @@ export class CommentFormComponent implements OnInit{
   }
 
   initComment(){
+    let sessionId: string = <string>sessionStorage.getItem("userId");
     this.commentForm = this.fb.group({
       entrie_id: [this.route.snapshot.params["entrie_id"], Validators.required],
-      user_id : [1, Validators.required],
+      user_id : [sessionId, Validators.required],
       id: this.comment.id,
       comment: [this.comment, Validators.required],
     });
@@ -47,8 +48,8 @@ export class CommentFormComponent implements OnInit{
   submitForm(){
     const id = this.route.snapshot.params["entrie_id"];
     const padlet_id = this.route.snapshot.params["padlet_id"];
-    console.log(id);
-    console.log(padlet_id);
+    //console.log(id);
+    //console.log(padlet_id);
 
     const comment: Comment = CommentFactory.fromObject(this.commentForm.value);
     this.ps.createComment(id, comment).subscribe(res => {
