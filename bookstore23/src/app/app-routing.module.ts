@@ -13,11 +13,10 @@ const routes: Routes = [
   { path: 'padlets/:id', component: PadletDetailsComponent},
   { path: 'padletsform', component: PadletFormComponent},
   { path: 'padletsform/:id', component: PadletFormComponent},
-  { path: 'entries/:id', component: PadletDetailsComponent},
   { path: 'padlets/:padlet_id/entriesform', component: EntrieFormComponent},
   { path: 'padlets/:padlet_id/entriesform/:id', component: EntrieFormComponent},
-  { path: 'entries/:entries_id/ratingsform', component: RatingFormComponent},
-  //{ path: 'commentsform/:id', component: CommentFormComponent}
+  { path: 'padlets/:padlet_id/entries/:entrie_id/ratingsform', component: RatingFormComponent},
+  { path: 'padlets/:padlet_id/entries/:entrie_id/commentsform', component: CommentFormComponent}
 ];
 
 @NgModule({
