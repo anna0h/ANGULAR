@@ -25,18 +25,7 @@ export class PadletDetailsComponent implements OnInit {
     private ps: PadletService,
     private router: Router,
     private route: ActivatedRoute
-
   ) {}
-
-  /*ngOnInit() {
-    const params = this.route.snapshot.params;
-    this.ps.getSinglePadlet(params['id'])
-      .subscribe((p: Padlet) => {
-        this.padlet = p;
-        this.entries = this.padlet.entries;
-        this.user = this.padlet.user;
-      });
-  }*/
 
   ngOnInit() {
     const params = this.route.snapshot.params;
@@ -84,6 +73,7 @@ export class PadletDetailsComponent implements OnInit {
       this.ps.removeEntrie(id)
         .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
           this.route }));
+
     }
   }
 }

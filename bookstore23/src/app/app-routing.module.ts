@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'padlets/:padlet_id/entriesform', component: EntrieFormComponent},
   { path: 'padlets/:padlet_id/entriesform/:id', component: EntrieFormComponent},
   { path: 'padlets/:padlet_id/entries/:entrie_id/ratingsform', component: RatingFormComponent},
-  { path: 'padlets/:padlet_id/entries/:entrie_id/commentsform', component: CommentFormComponent}
+  { path: 'padlets/:padlet_id/entries/:entrie_id/commentsform', component: CommentFormComponent},
 ];
 
 @NgModule({

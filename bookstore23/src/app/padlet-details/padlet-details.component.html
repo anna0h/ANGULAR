@@ -36,7 +36,7 @@
         </div>
       </div>
       <!-- CREATE BUTTON -->
-      <button class="tiny ui icon button" [routerLink]="['../../entries', entrie.id, 'ratingsform']">
+      <button class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'ratingsform']">
         <i class="plus icon"></i></button><br>
 
     </div>
@@ -48,8 +48,7 @@
         <div>{{comment.user.firstName}} {{comment.user.lastName}} (ID: {{comment.user_id}}): {{comment.comment}}</div>
         <br>
       </div>
-      <!-- CREATE BUTTON -->
-      <button class="tiny ui icon button" [routerLink]="['../commentsform/{id}']">
+      <button class="tiny ui icon button" [routerLink]="['/padlets', padlet.id, 'entries', entrie.id, 'commentsform']">
         <i class="plus icon"></i></button><br>
     </div>
   </div>

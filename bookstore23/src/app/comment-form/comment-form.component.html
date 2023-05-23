@@ -1,1 +1,14 @@
-<p>comment-form works!</p>
+<h1>Neues Comment erstellen</h1>
+<form class="ui large form" [formGroup]="commentForm" (ngSubmit)="submitForm()">
+  <input type="hidden" formControlName="entrie_id">
+  <input type="hidden" formControlName="user_id">
+
+  <div class="field">
+    <label>Dein Kommentar: </label>
+    <textarea formControlName="comment"></textarea>
+    <div *ngIf="errors['comment']" class="ui negative message"> {{
+      errors['comment'] }} </div>
+  </div>
+
+  <button type="submit" class="ui button" [disabled]="commentForm.invalid">Speichern</button>
+</form>

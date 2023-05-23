@@ -46,6 +46,7 @@ export class RatingFormComponent implements OnInit {
     const padlet_id = this.route.snapshot.params["padlet_id"];
     console.log(id);
     console.log(padlet_id);
+
     const rating: Rating = RatingFactory.fromObject(this.ratingForm.value);
     //console.log(rating);
     this.ps.createRating(id, rating).subscribe(res => {
