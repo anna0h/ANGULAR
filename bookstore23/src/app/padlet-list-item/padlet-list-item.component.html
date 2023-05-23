@@ -1,7 +1,19 @@
 <div class="content">
-  <div class="header">{{ padlet?.name }}</div>
+  <h3 class="header">{{ padlet?.name }}</h3>
   <div class="metadata">
-    <div class="content">Ersteller: {{ padlet?.user?.firstName}} {{ padlet?.user?.lastName}} ({{padlet?.user_id}})</div>
+    <div class="content">Ersteller: {{ padlet?.user?.firstName}} {{ padlet?.user?.lastName}} (ID: {{padlet?.user_id}})</div>
   </div>
   <div class="extra">Padlet ID: {{ padlet?.id }}</div>
+  <div class="extra">
+    <div *ngIf="padlet?.is_public">
+      <img class="ui avatar image" src="https://static.thenounproject.com/png/4752321-200.png"
+           alt="geschlossenes Schloss">
+      <span>öffentlich</span>
+    </div>
+    <div *ngIf="!padlet?.is_public">
+      <img class="ui avatar image" src="https://cdn-icons-png.flaticon.com/512/1388/1388888.png"
+           alt="geschlossenes Schloss">
+      <span>privat</span>
+    </div>
+  </div>
 </div>
