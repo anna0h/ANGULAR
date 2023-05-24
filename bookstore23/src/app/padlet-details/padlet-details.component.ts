@@ -73,8 +73,9 @@ export class PadletDetailsComponent implements OnInit {
   removeEntrie(id: number){
     if (confirm('Entrie wirklich löschen?')) {
       this.ps.removeEntrie(id)
-        .subscribe((res:any) => this.router.navigate(['../'], { relativeTo:
-          this.route }));
+        .subscribe((res:any) => this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/padlets', this.padlet.id ]); // springt zu padlets, dann in das richtige -> lädt also Seite neu
+        }));
 
     }
   }

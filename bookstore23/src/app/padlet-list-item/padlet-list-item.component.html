@@ -1,19 +1,29 @@
-<div class="content">
-  <h3 class="header">{{ padlet?.name }}</h3>
-  <div class="metadata">
-    <div class="content">Ersteller: {{ padlet?.user?.firstName}} {{ padlet?.user?.lastName}} (ID: {{padlet?.user_id}})</div>
-  </div>
-  <div class="extra">Padlet ID: {{ padlet?.id }}</div>
+<div *ngIf="authService.isLoggedOut() && padlet?.is_public == true || authService.isLoggedIn()">
+  <div class="ui card"
+       *ngIf="currentUrl == '/mypadlets' && padlet?.user_id == sessionId || currentUrl == '/padlets'">
 
-  <div class="metadata">
-    <!--div *ngIf="padlet?.is_public == true">
-      <img class="ui avatar image" src="https://static.thenounproject.com/png/4752321-200.png" alt="geschlossenes Schloss">
-      <span>öffentlich</span>
-    </div-->
-    <div *ngIf="padlet?.is_public != true">
-      <img class="ui avatar image" src="https://cdn-icons-png.flaticon.com/512/1388/1388888.png" alt="geschlossenes Schloss">
-      <span>privat</span>
+    <div class="content">
+
+      <h3 class="header">{{ padlet?.name }}</h3><br>
+      <div class="extra">Padlet ID: {{ padlet?.id }}</div>
+
+
+      <div class="content">Ersteller:In: {{ padlet?.user?.firstName}} {{ padlet?.user?.lastName}}
+        (ID: {{padlet?.user_id}})
+      </div>
+      <br>
+
+
+      <!--div *ngIf="padlet?.is_public == true">
+        <img class="ui avatar image" src="https://static.thenounproject.com/png/4752321-200.png" alt="geschlossenes Schloss">
+        <span>öffentlich</span>
+      </div-->
+      <div *ngIf="padlet?.is_public != true">
+        <img class="ui avatar image" src="https://cdn-icons-png.flaticon.com/512/1388/1388888.png"
+             alt="privates Padlet">
+      </div>
+
     </div>
-  </div>
 
+  </div>
 </div>

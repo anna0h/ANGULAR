@@ -1,9 +1,7 @@
 <div class="ui three item tabs menu">
   <a routerLink="padlets" routerLinkActive="active" class="item">alle Padlets</a>
-  <a *ngIf="isLoggedIn()" routerLink="mypadlets" routerLinkActive="active"
-     class="item">Deine Padlets</a>
-  <a routerLink="login" routerLinkActive="active"
-     class="item">{{getLoginLabel()}}</a>
+  <a *ngIf="isLoggedIn()" routerLink="mypadlets" routerLinkActive="active" class="item">Deine Padlets</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
 </div>
 
 <div class="ui container">

@@ -40,7 +40,6 @@ export class PadletFormComponent implements OnInit {
   }
 
   initPadlet() {
-    //this.buildThumbnailsArray();
     this.padletForm = this.fb.group({
       id: this.padlet.id,
       name: [this.padlet.name, Validators.required],

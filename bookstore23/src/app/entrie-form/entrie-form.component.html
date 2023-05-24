@@ -2,10 +2,8 @@
 <h1 *ngIf="isUpdatingEntrie != true">Entry erstellen</h1>
 
 <form class="ui large form" [formGroup]="entrieForm" (ngSubmit)="submitForm()">
-  <!--entrie id-->
   <input type="hidden" formControlName="id">
 
-  <!--title-->
   <div class="field">
     <label>Titel</label>
     <input formControlName="title">
@@ -13,18 +11,11 @@
       errors['title'] }} </div>
   </div>
 
-  <!-- content -->
   <div class="field">
     <label>Text</label>
     <textarea formControlName="content"></textarea>
     <div *ngIf="errors['content']" class="ui negative message"> {{
       errors['content'] }} </div>
   </div>
-
-  <!--user_id-->
-  <!-- wird vorerst von methode hartcodiert übernommen und später durch login automatisch genommen -->
-  <!-- padlet_id wird aus der url genommen -->
-
-
   <button type="submit" class="ui button" [disabled]="entrieForm.invalid">Speichern</button>
 </form>

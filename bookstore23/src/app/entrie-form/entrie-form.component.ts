@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {PadletFactory} from "../shared/padlet-factory";
 import {EntrieFactory} from "../shared/entrie-factory";
 import {PadletService} from "../shared/padlet.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Padlet} from "../shared/padlet";
 import {Entrie} from "../shared/entrie";
 import {PadletFormErrorMessages} from "../padlet-form/padlet-form-error-messages";
 

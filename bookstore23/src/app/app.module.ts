@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { PadletListComponent } from './padlet-list/padlet-list.component';
 import { PadletListItemComponent } from './padlet-list-item/padlet-list-item.component';
 import { PadletDetailsComponent } from './padlet-details/padlet-details.component';
-import { EntrieItemComponent } from './entrie-item/entrie-item.component';
 import {PadletService} from "./shared/padlet.service";
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
@@ -26,7 +25,6 @@ import {JwtInterceptorService} from "./shared/jwt-interceptor.service";
     PadletListComponent,
     PadletListItemComponent,
     PadletDetailsComponent,
-    EntrieItemComponent,
     PadletFormComponent,
     EntrieFormComponent,
     RatingFormComponent,
